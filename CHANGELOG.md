@@ -3,6 +3,12 @@
 ## Unreleased
 
 ### Changed
+- **Partner SDK v2 response migration**: `listStreams()` now returns
+  `streams`, `meta`, and `links`; its deprecated runtime-only `data` getter
+  warns once. `createStream()` now returns the bare stream, and `getStream()`
+  returns the stream in `data`. Update typed list consumers from `page.data` to
+  `page.streams`. `StreamStatus` now includes `withdrawn` and `cancelled` and
+  preserves unknown status strings. (#1746)
 - **SSE heartbeats are now bounded and dead clients are detected** (#1372):
   all three SSE endpoints (`/api/indexer/sse`, `/api/streams/events`,
   `/api/streams/:id/events`) share a new `createSseConnection` helper
